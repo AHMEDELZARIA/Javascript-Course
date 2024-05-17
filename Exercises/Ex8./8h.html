@@ -72,6 +72,7 @@
      <button onclick="
        try {
          calculation = eval(calculation);
+         saveCalculation();
          console.log(calculation);
        } catch (error) {
          console.log('Invalid expression.');
@@ -88,16 +89,22 @@
    <p>
      <button onclick="
        calculation = '';
+       saveCalculation();
        console.log('Cleared.');
      ">Clear</button>
    </p>
 
    <script>
-     let calculation = '';
+     let calculation = localStorage.getItem('calculation') || '';
 
      function updateCalculation(value) {
-       calculation += value;
-       console.log(calculation);
+      calculation += value;
+      saveCalculation();
+      console.log(calculation);
+     }
+
+     function saveCalculation() {
+      localStorage.setItem('calculation', calculation);
      }
    </script>
  </body>

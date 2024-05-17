@@ -1,104 +1,68 @@
- <!DOCTYPE html>
- <html>
+<!DOCTYPE html>
+<html>
   <head>
-    <title>Calculator</title>
+    <title>Cart Quantity</title>
   </head>
   <body>
-    <p>Calculator</p>
+    <button onclick="
+      console.log(`Cart quantity: ${cartQuantity}`);
+    ">Show Quantity</button>
 
-    <p>
-      <button onclick="
-        updateCalculation('1');
-      ">1</button>
+    <button onclick="
+      updateCartQuantity(1);
+    ">Add to Cart</button>
 
-      <button onclick="
-        updateCalculation('2');
-      ">2</button>
+    <button onclick="
+      updateCartQuantity(2);
+    ">+2</button>
 
-      <button onclick="
-        updateCalculation('3');
-      ">3</button>
+    <button onclick="
+      updateCartQuantity(3);
+    ">+3</button>
 
-      <button onclick="
-        updateCalculation(' + ');
-      ">+</button>
-    </p>
+    <button onclick="
+      updateCartQuantity(4);
+    ">+4</button>
 
-    <p>
-      <button onclick="
-        updateCalculation('4');
-      ">4</button>
+    <button onclick="
+      updateCartQuantity(5);
+    ">+5</button>
 
-      <button onclick="
-        updateCalculation('5');
-      ">5</button>
+    <button onclick="
+      updateCartQuantity(-1);
+    ">-1</button>
 
-      <button onclick="
-        updateCalculation('6');
-      ">6</button>
+    <button onclick="
+      updateCartQuantity(-2);
+    ">-2</button>
 
-      <button onclick="
-        updateCalculation(' - ');
-      ">-</button>
-    </p>
+    <button onclick="
+      updateCartQuantity(-3);
+    ">-3</button>
 
-    <p>
-      <button onclick="
-        updateCalculation('7');
-      ">7</button>
+    <button onclick="
+      cartQuantity = 0;
+      console.log('Cart was reset.');
+      console.log(`Cart quantity: ${cartQuantity}`);
+    ">Reset Cart</button>
 
-      <button onclick="
-        updateCalculation('8');
-      ">8</button>
+    <script>  
+      let cartQuantity = 0;
 
-      <button onclick="
-        updateCalculation('9');
-      ">9</button>
-
-      <button onclick="
-        updateCalculation(' * ');
-      ">x</button>
-    </p>
-
-    <p>
-      <button onclick="
-        updateCalculation('0');
-      ">0</button>
-
-      <button onclick="
-        updateCalculation('.');
-      ">.</button>
-
-      <button onclick="
-        try {
-          calculation = eval(calculation);
-          console.log(calculation);
-        } catch (error) {
-          console.log('Invalid expression.');
-          calculation = '';
-          console.log('Cleared.');
+      function updateCartQuantity(change) {
+        if (cartQuantity + change > 10) {
+          alert('The cart is full.');
+          return;
         }
-      ">=</button>
+        
+        if (cartQuantity + change < 0) {
+          alert('Not enough items in the cart');
+          return;
+        }
 
-      <button onclick="
-        updateCalculation(' / ');
-      ">÷</button>
-    </p>
-
-    <p>
-      <button onclick="
-        calculation = '';
-        console.log('Cleared.');
-      ">Clear</button>
-    </p>
-
-    <script>
-      let calculation = '';
-
-      function updateCalculation(value) {
-        calculation += value;
-        console.log(calculation);
+        cartQuantity += change;
+        console.log(`Cart quantity: ${cartQuantity}`);
       }
     </script>
   </body>
- </html>
+</html>
