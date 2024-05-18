@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="10h.css">
+  </head>
+  <body>
+    <p>Amazon Shipping Calculator</p>
+    <input placeholder="Cost of order" class="js-cost-input cost-input" onkeydown="
+      handleCostKeydown(event);
+    ">
+    <button onclick="
+      calculateTotal();
+    " class="calculate-button">Calculate</button>
+    <p class="js-total-cost"></p>
+
+    <script src="10h.js"></script>
+  </body>
+</html>
