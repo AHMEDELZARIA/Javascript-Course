@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <script>
+      function search(words, word) {
+        for (let i = 0; i < words.length; i++) {
+          if (words[i] === word) {
+            return console.log(i);
+          }
+        }
+        return console.log(-1);
+      }
+
+      search(['hello', 'world', 'search', 'good'], 'search');
+      search(['not', 'found'], 'search');
+    </script>
+  </body>
+</html>
