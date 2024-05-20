@@ -1,11 +1,63 @@
+// Retrieve the saved score or start at 0 if first time
 let score = JSON.parse(localStorage.getItem('score')) || {
   wins: 0,
   losses: 0,
   ties: 0
 };
 
+// Display correct score once webpage loads
 updateScoreElement();
 
+// Handles user click on rock button
+document.querySelector('.js-rock-button')
+  .addEventListener('click', () => {
+    playGame('rock');
+  });
+
+// Handles user click on paper button
+document.querySelector('.js-paper-button')
+  .addEventListener('click', () => {
+    playGame('paper');
+  });
+
+// Handles user click on scissors button
+document.querySelector('.js-scissors-button')
+  .addEventListener('click', () => {
+    playGame('scissors');
+  }); 
+
+// Handles user click on reset score button
+document.querySelector('.js-reset-score-button')
+  .addEventListener('click', () => {
+    score.wins = 0;
+    score.losses = 0;
+    score.ties = 0;
+    localStorage.removeItem('score');
+    updateScoreElement();
+  });
+
+// Handles user click on auto play button
+document.querySelector('.js-auto-play-button')
+  .addEventListener('click', () => {
+    autoPlay();
+  });
+
+document.body.addEventListener('keydown', (event) => {
+  const key = event.key;
+
+  if (key === 'r') {
+    playGame('rock');
+  } else if (key === 'p') {
+    playGame('paper');
+  } else if (key === 's') {
+    playGame('scissors');
+  }
+});
+
+/**
+ * Plays the rock paper scissors game given a user choice
+ * @param {*} playerMove User choice of rock, paper, or scissors
+ */
 function playGame(playerMove) {
   const computerMove = pickComputerMove();
 
@@ -47,10 +99,13 @@ function playGame(playerMove) {
     score.ties++;
   }
 
+  // Save the score to local storage
   localStorage.setItem('score', JSON.stringify(score));
-
+  
+  // Update the score on the webpage
   updateScoreElement();
 
+  // Update result of game on the webpage
   document.querySelector('.js-result')
     .innerHTML = result;
     
@@ -61,6 +116,10 @@ function playGame(playerMove) {
 Computer`;
 }
 
+/**
+ * Determines a random computer selection of either rock, paper, or scissors
+ * @returns either 'rock', 'paper', or 'scissors'
+ */
 function pickComputerMove() {
   const randomNumber = Math.random();
 
@@ -77,6 +136,9 @@ function pickComputerMove() {
   return computerMove;
 }
 
+/**
+ * Updates the score on the webpage
+ */
 function updateScoreElement() {
   document.querySelector('.js-score')
   .innerHTML = `Wins: ${score.wins}, Losses: ${score.losses}, Ties: ${score.ties}`;
@@ -86,9 +148,12 @@ let isAutoPlaying = false;
 let intervalId;
 const buttonElement = document.querySelector('.js-auto-play-button');
 
+/**
+ * Computer plays against itself
+ */
 function autoPlay() {
   if (!isAutoPlaying) {
-    intervalId = setInterval(function() {
+    intervalId = setInterval(() => {
       const playerMove = pickComputerMove();
       playGame(playerMove);
     }, 1000);

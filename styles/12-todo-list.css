@@ -5,7 +5,7 @@ body {
 .todo-input-grid,
 .todo-grid {
   display: grid;
-  grid-template-columns: 200px 150px 100px;
+  grid-template-columns: 200px 200px 100px;
   align-items: center;
   column-gap: 10px;
   row-gap: 10px;
@@ -26,16 +26,31 @@ body {
   background-color: green;
   color: white;
   border: none;
+  border-radius: 40px;
   font-size: 15px;
   cursor: pointer;
+  transition: opacity 0.15s;
 }
 
 .delete-todo-button {
   background-color: darkred;
   color: white;
   border: none;
+  border-radius: 40px;
   font-size: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
   cursor: pointer;
+  transition: opacity 0.15s;
 }
+
+.add-todo-button:hover,
+.delete-todo-button:hover {
+  opacity: 0.85;
+}
+
+.add-todo-button:active,
+.delete-todo-button:active {
+  opacity: 0.7;
+}
+
