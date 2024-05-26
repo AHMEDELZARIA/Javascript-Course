@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App</title>
+  </head>
+  <body>
+    <button class="js-add-button">Add</button>
+
+    <button class="js-remove-button">Remove</button>
+
+    <script>
+      let messages = 2;
+
+      displayTitle();
+
+      document.querySelector('.js-add-button')
+        .addEventListener('click', () => messages++);
+
+      document.querySelector('.js-remove-button')
+        .addEventListener('click', () => {
+          if (messages) {
+            messages--;
+          }
+        });
+
+      function displayTitle() {
+        setInterval(() => {
+          if (!messages) {
+            return document.title = 'App';
+          }
+
+          if (document.title === 'App' ) {
+            return document.title = `(${messages}) New messages`;
+          }
+
+          return document.title = 'App';
+        }, 1000);
+      }
+    </script>
+  </body>
+</html>

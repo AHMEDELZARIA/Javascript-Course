@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+  <body>
+    <button>
+      Add to cart
+    </button>
+
+    <p class="js-added-message"></p>
+
+    <script>
+      const messageElement = document.querySelector('.js-added-message');
+      
+      let timeoutID;
+
+      document.querySelector('button')
+        .addEventListener('click', () => {
+          clearTimeout(timeoutID);
+
+          messageElement.innerHTML = 'Added';
+
+          timeoutID = setTimeout(() => messageElement.innerHTML = '', 2000); 
+        });
+    </script>
+  </body>
+</html>
